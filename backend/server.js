@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import connectDB from "./lib/db.js";
 import authRoutes from "./routes/auth.route.js";
 import cookieParser from "cookie-parser";
+import productRoutes from "./routes/product.route.js";
 
 dotenv.config();
 
@@ -16,6 +17,8 @@ app.use(cookieParser());
 
 //routes
 app.use("/api/auth", authRoutes);
+app.use("/api/products", productRoutes);
+
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Ecommerce Store API" });
 });
