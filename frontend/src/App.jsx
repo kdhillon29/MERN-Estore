@@ -15,7 +15,7 @@ function App() {
   // console.log("user ", user);
 
   useEffect(() => {
-    new Promise((resolve) => setTimeout(() => resolve, 2000));
+    // new Promise((resolve) => setTimeout(() => resolve, 2000));
     checkAuth();
   }, [checkAuth]);
 
