@@ -10,15 +10,24 @@ import LoadingSpinner from "./components/LoadingSpinner";
 import { Navigate } from "react-router-dom";
 import AdminPage from "./pages/AdminPage";
 import CategoryPage from "./pages/CategoryPage";
+import CartPage from "./pages/CartPage";
+import { useCartStore } from "./stores/useCartStore";
 
 function App() {
   const { user, checkAuth, checkingAuth } = useUserStore();
+  const { getCartItems } = useCartStore();
   // console.log("user ", user);
 
   useEffect(() => {
     // new Promise((resolve) => setTimeout(() => resolve, 2000));
     checkAuth();
   }, [checkAuth]);
+
+  useEffect(() => {
+    if (!user) return;
+
+    getCartItems();
+  }, [getCartItems, user]);
 
   return checkingAuth ? (
     <LoadingSpinner />
@@ -50,6 +59,10 @@ function App() {
             }
           />
           <Route path="/category/:category" element={<CategoryPage />} />
+          <Route
+            path="/cart"
+            element={user ? <CartPage /> : <Navigate to="/login" />}
+          />
         </Routes>
       </div>
       <Toaster richColors position="top-center" />

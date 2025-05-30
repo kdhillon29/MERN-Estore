@@ -31,7 +31,7 @@ const Navbar = () => {
           <nav className="flex flex-wrap items-center gap-4">
             <Link
               to={"/"}
-              className="text-gray-300 flex items-center bg-gray-700 p-2 px-4 hover:bg-gray-600 rounded-md  transition duration-300
+              className="text-gray-300 max-sm:hidden flex items-center bg-gray-700 p-2 px-4 hover:bg-gray-600 rounded-md  transition duration-300
 					 ease-in-out"
             >
               <Home className="inline-block mr-1" size={25} />

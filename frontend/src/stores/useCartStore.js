@@ -91,7 +91,9 @@ export const useCartStore = create((set, get) => ({
 
   updateQuantity: async (productId, quantity) => {
     if (quantity === 0) {
-      get().removeFromCart(productId);
+      if (confirm("Are you sure you want to remove this item?")) {
+        get().removeFromCart(productId);
+      }
       return;
     }
 
