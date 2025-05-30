@@ -1,19 +1,25 @@
-import { Minus, Plus, Trash } from "lucide-react";
+import { Loader2, Minus, Plus, Trash } from "lucide-react";
 import { useCartStore } from "../stores/useCartStore";
 
 const CartItem = ({ item }) => {
-  const { removeFromCart, updateQuantity } = useCartStore();
+  const { removeFromCart, updateQuantity, loading } = useCartStore();
 
   return (
-    <div className="rounded-lg min-w-sm max-w-xl border p-4 shadow-sm border-gray-700 bg-gray-800 md:p-6">
-      <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
-        <div className=" shrink-0 md:order-1">
+    <div className=" rounded-lg  max-w-xl border sm:p-4 shadow-sm border-gray-700 bg-gray-800 ">
+      <div className="space-y-3 md:flex md:items-center md:justify-between md:gap-6 md:space-y-6">
+        <div className="shrink-0 md:order-1">
           <img
-            className="w-20 h-auto md:h-32 rounded object-cover"
+            className="w-24 h-24 md:w-32 md:h-32 rounded object-cover"
             src={item.image}
           />
         </div>
         <label className="sr-only">Choose quantity:</label>
+        {loading && (
+          <div className="absolute top-1/7 left-1/2 animate-spin">
+            {" "}
+            <Loader2 size="32" color="white" />
+          </div>
+        )}
 
         <div className="flex items-center justify-between md:order-3 md:justify-end">
           <div className="flex items-center gap-2">

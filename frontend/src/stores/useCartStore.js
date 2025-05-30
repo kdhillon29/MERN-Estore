@@ -67,9 +67,9 @@ export const useCartStore = create((set, get) => ({
         return { cart: newCart };
       });
       get().calculateTotals();
-      set({ loading: false });
     } catch (error) {
       toast.error(error.response.data.message || "An error occurred");
+    } finally {
       set({ loading: false });
     }
   },
@@ -90,10 +90,12 @@ export const useCartStore = create((set, get) => ({
   },
 
   updateQuantity: async (productId, quantity) => {
+    set({ loading: true });
     if (quantity === 0) {
       if (confirm("Are you sure you want to remove this item?")) {
         get().removeFromCart(productId);
       }
+      set({ loading: false });
       return;
     }
 
@@ -104,6 +106,7 @@ export const useCartStore = create((set, get) => ({
       ),
     }));
     get().calculateTotals();
+    set({ loading: false });
   },
   calculateTotals: () => {
     const { cart, coupon } = get();

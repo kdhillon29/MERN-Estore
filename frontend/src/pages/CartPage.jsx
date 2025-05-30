@@ -3,19 +3,22 @@ import { useCartStore } from "../stores/useCartStore";
 import { motion } from "framer-motion";
 import { ShoppingCart } from "lucide-react";
 import CartItem from "../components/CartItem";
-// import PeopleAlsoBought from "../components/PeopleAlsoBought";
-// import OrderSummary from "../components/OrderSummary";
+import PeopleAlsoBought from "../components/PeopleAlsoBought";
+import OrderSummary from "../components/OrderSummary";
 // import GiftCouponCard from "../components/GiftCouponCard";
 
 const CartPage = () => {
   const { cart } = useCartStore();
 
   return (
-    <div className="py-4 md:py-8">
-      <div className="mx-auto  px-4 2xl:px-0">
-        <div className=" w-full mt-3 sm:mt-8 md:gap-6 md:flex md:justify-center md:items-center xl:gap-8">
+    <div className="py-2 md:py-6">
+      <div className=" space-y-6 px-2  md:px-12 2xl:px-0">
+        <h1 className="text-green-400 shadow-2xl text-3xl tracking-wider font-semibold text-center">
+          Shopping Cart
+        </h1>
+        <div className=" w-full mt-3 md:mt-12  md:gap-12 md:flex md:justify-center   xl:gap-8">
           <motion.div
-            className="mx-auto w-full flex-none md:max-w-5xl lg:max-w-6xl"
+            className=" flex-none  md:max-w-3xl"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -23,27 +26,27 @@ const CartPage = () => {
             {cart.length === 0 ? (
               <EmptyCartUI />
             ) : (
-              <div className="space-y-6  w-full  flex flex-col items-center justify-center">
+              <div className="space-y-6  flex flex-col ">
                 {cart.map((item) => (
                   <CartItem key={item._id} item={item} />
                 ))}
               </div>
             )}
-            {/* {cart.length > 0 && <PeopleAlsoBought />} */}
           </motion.div>
 
           {cart.length > 0 && (
             <motion.div
-              className="mx-auto mt-6 max-w-4xl flex-1 space-y-6 md:mt-0 md:w-full"
+              className="mx-auto   max-w-3xl flex-1 space-y-6  md:w-full"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              {/* <OrderSummary /> */}
+              <OrderSummary />
               {/* <GiftCouponCard /> */}
             </motion.div>
           )}
         </div>
+        {cart.length > 0 && <PeopleAlsoBought />}
       </div>
     </div>
   );
