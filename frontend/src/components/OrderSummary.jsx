@@ -14,6 +14,7 @@ const OrderSummary = () => {
 
   const { total, subtotal, coupon, isCouponApplied, cart } = useCartStore();
 
+  console.log("coupon", isCouponApplied, coupon);
   const savings = subtotal - total;
   const formattedSubtotal = subtotal.toFixed(2);
   const formattedTotal = total.toFixed(2);
@@ -24,7 +25,7 @@ const OrderSummary = () => {
     const stripe = await stripePromise;
     const res = await axios.post("/payment/create-checkout-session", {
       products: cart,
-      couponCode: coupon ? coupon.code : null,
+      couponCode: isCouponApplied && coupon ? coupon.code : null,
     });
     const session = res.data;
     const result = await stripe.redirectToCheckout({
