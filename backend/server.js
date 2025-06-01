@@ -31,7 +31,7 @@ if (process.env.NODE_ENV !== "development") {
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
   //express5 syntax
-  app.get("(.*)", (req, res) => {
+  app.get("/{*splat}", (req, res) => {
     res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
   });
 }
