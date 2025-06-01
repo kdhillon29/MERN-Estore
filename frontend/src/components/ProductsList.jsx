@@ -18,42 +18,42 @@ const ProductsList = () => {
       )}
 
       <motion.div
-        className="bg-gray-800 shadow-lg rounded-lg overflow-hidden max-w-4xl mx-auto"
+        className="bg-gray-800 shadow-lg rounded-lg overflow-scroll md:overflow-hidden max-h-[60vh] max-w-4xl mx-auto"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <table className=" min-w-full divide-y divide-gray-700">
+        <table className="w-full divide-y divide-gray-700">
           <thead className="bg-gray-700">
             <tr>
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                className="md:px-6 px-2 py-3 text-left text-xs md:font-semibold text-gray-300 md:uppercase md:tracking-wider"
               >
                 Product
               </th>
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                className="md:px-6 px-2 py-3 text-left text-xs md:font-semibold text-gray-300 md:uppercase md:tracking-wider"
               >
                 Price
               </th>
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                className="md:px-6 px-2 py-3 text-left text-xs md:font-semibold text-gray-300 md:uppercase md:tracking-wider"
               >
                 Category
               </th>
 
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                className=" md:px-6 px-2 py-3 text-left text-xs md:font-semibold text-gray-300 md:uppercase md:tracking-wider"
               >
                 Featured
               </th>
               <th
                 scope="col"
-                className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider"
+                className="md:px-6 px-2 py-3 text-left text-xs md:font-semibold text-gray-300 md:uppercase md:tracking-wider"
               >
                 Actions
               </th>
@@ -63,33 +63,33 @@ const ProductsList = () => {
           <tbody className="bg-gray-800 divide-y divide-gray-700">
             {products?.map((product) => (
               <tr key={product._id} className="hover:bg-gray-700">
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="flex items-center">
-                    <div className="flex-shrink-0 h-10 w-10">
+                <td className="md:px-6 px-2 py-4 whitespace-nowrap">
+                  <div className="flex  shrink-1 md:flex-row flex-col items-left">
+                    <div className="flex-shrink-1 md:h-10 md:w-10 h-6 w-6">
                       <img
-                        className="h-10 w-10 rounded-full object-cover"
+                        className="md:h-10 md:w-10 h-6 w-6 rounded-full object-cover"
                         src={product.image}
                         alt={product.name}
                       />
                     </div>
-                    <div className="ml-4">
-                      <div className="text-sm font-medium text-white">
+                    <div className="md:ml-4">
+                      <div className="text-xs md:text-sm md:font-semibold text-white">
                         {product.name}
                       </div>
                     </div>
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="md:px-6 px-2 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-300">
                     ${product.price.toFixed(2)}
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="md:px-6 px-2 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-300">
                     {product.category}
                   </div>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap">
+                <td className="md:px-6 px-2 py-4 whitespace-nowrap">
                   <button
                     onClick={() => toggleFeaturedProduct(product._id)}
                     className={`p-1 rounded-full ${
@@ -101,7 +101,7 @@ const ProductsList = () => {
                     <Star className="h-5 w-5" />
                   </button>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                <td className="md:px-6 px-2 py-4 whitespace-nowrap text-sm font-medium">
                   <button
                     onClick={() => {
                       if (confirm("Are you sure to delete this product")) {
