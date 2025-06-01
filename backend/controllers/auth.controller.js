@@ -122,7 +122,7 @@ export const logout = async (req, res) => {
       refreshToken,
       process.env.JWT_REFRESH_TOKEN_SECRET
     );
-    await redis.del(`refresh_token:${decoded.userID}`);
+    await redis.del(`refresh_token:${decoded.userId}`);
     res.clearCookie("accessToken");
     res.clearCookie("refreshToken");
     return res.status(200).json({ message: "Logout successfully" });
