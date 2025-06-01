@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import axios from "../lib/axios";
 import { toast } from "react-hot-toast";
+import { AxiosError } from "axios";
 
 export const useCartStore = create((set, get) => ({
   cart: [],
@@ -74,7 +75,14 @@ export const useCartStore = create((set, get) => ({
       });
       get().calculateTotals();
     } catch (error) {
-      toast.error(error.response.data.message || "An error occurred");
+      console.log("cart error", error);
+      if (
+        error instanceof AxiosError &&
+        error.response.data.message.includes("unauthorized")
+      ) {
+        toast.error("Unauthorized");
+      }
+      toast.error("An error occurred");
     } finally {
       set({ loading: false });
     }
