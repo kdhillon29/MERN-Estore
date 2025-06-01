@@ -27,7 +27,7 @@ app.use("/api/coupon", couponRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV !== "development") {
   app.use(express.static(path.join(__dirname, "/frontend/dist")));
 
   //express5 syntax
