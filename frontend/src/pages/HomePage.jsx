@@ -22,7 +22,7 @@ const HomePage = () => {
 
   return (
     <div className="relative min-h-screen text-white overflow-hidden">
-      <div className="relative z-10 max-w-7xl mx-auto py-24 sm:px-6 lg:px-8 md:py-28">
+      <div className="relative z-10 max-w-7xl mx-auto py-18 sm:px-6 lg:px-8 md:py-24">
         <h1 className="text-center text-2xl sm:text-4xl font-bold text-emerald-400 mb-4">
           Explore Our Categories
         </h1>
