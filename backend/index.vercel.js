@@ -1,5 +1,5 @@
 // Import your server main file
-import app from "./backend/server.js";
+import app from "./server.js";
 
 // Export a serverless function handler
 module.exports = (req, res) => {

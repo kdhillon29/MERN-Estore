@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/backend/(.*)",
+      "destination": "/backend/index.vercel.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
+}
