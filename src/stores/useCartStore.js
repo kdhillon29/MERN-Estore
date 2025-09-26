@@ -2,6 +2,7 @@ import { create } from "zustand";
 import axios from "../lib/axios";
 import { toast } from "react-hot-toast";
 import { AxiosError } from "axios";
+import { URL } from "../config";
 
 export const useCartStore = create((set, get) => ({
   cart: [],
@@ -13,7 +14,7 @@ export const useCartStore = create((set, get) => ({
 
   getMyCoupon: async () => {
     try {
-      const response = await axios.get("/coupon");
+      const response = await axios.get(`${URL}/api/coupon`);
       set({ coupon: response.data });
     } catch (error) {
       console.error("Error fetching coupon:", error);
@@ -21,7 +22,7 @@ export const useCartStore = create((set, get) => ({
   },
   applyCoupon: async (code) => {
     try {
-      const response = await axios.post("/coupon/validate", { code });
+      const response = await axios.post(`${URL}/api/coupon/validate`, { code });
       set({ coupon: response.data, isCouponApplied: true });
       get().calculateTotals();
       toast.success("Coupon applied successfully");
@@ -37,7 +38,7 @@ export const useCartStore = create((set, get) => ({
 
   getCartItems: async () => {
     try {
-      const res = await axios.get("/cart");
+      const res = await axios.get(`${URL}/api/cart`);
       set({ cart: res.data });
       get().calculateTotals();
     } catch (error) {
@@ -48,7 +49,7 @@ export const useCartStore = create((set, get) => ({
   clearCart: async () => {
     set({ cart: [], coupon: null, total: 0, subtotal: 0 });
     try {
-      await axios.delete(`/cart`);
+      await axios.delete(`${URL}/api/cart`);
     } catch (error) {
       console.log("cart error", error);
       toast.error(error.response.data.message || "An error occurred");
@@ -57,7 +58,7 @@ export const useCartStore = create((set, get) => ({
   addToCart: async (product) => {
     set({ loading: true });
     try {
-      await axios.post("/cart", { productId: product._id });
+      await axios.post(`${URL}/api/cart`, { productId: product._id });
       toast.success("Product added to cart");
 
       set((prevState) => {
@@ -90,7 +91,7 @@ export const useCartStore = create((set, get) => ({
   removeFromCart: async (productId) => {
     set({ loading: true });
     try {
-      await axios.delete(`/cart`, { data: { productId } });
+      await axios.delete(`${URL}/api/cart`, { data: { productId } });
       set((prevState) => ({
         cart: prevState.cart.filter((item) => item._id !== productId),
       }));
@@ -113,7 +114,7 @@ export const useCartStore = create((set, get) => ({
       return;
     }
 
-    await axios.put(`/cart/${productId}`, { quantity });
+    await axios.put(`${URL}/api/cart/${productId}`, { quantity });
     set((prevState) => ({
       cart: prevState.cart.map((item) =>
         item._id === productId ? { ...item, quantity } : item
