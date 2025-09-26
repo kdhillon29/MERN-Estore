@@ -11,6 +11,7 @@ import analyticsRoutes from "./routes/analytics.route.js";
 import path from "path";
 import process from "node:process";
 dotenv.config();
+import cors from "cors";
 
 const app = express();
 
@@ -19,6 +20,22 @@ const __dirname = path.resolve();
 //middleware
 app.use(express.json({ limit: "10mb" }));
 app.use(cookieParser());
+
+// Cors setup to allow requests in production from the client
+app.use(
+  cors({
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: [
+      "Content-Type",
+      "Authorization",
+      "Accept",
+      "X-Requested-With",
+    ],
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+  })
+);
 
 //routes
 app.use("/api/auth", authRoutes);
