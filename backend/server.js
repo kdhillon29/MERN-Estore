@@ -9,6 +9,7 @@ import couponRoutes from "./routes/coupon.route.js";
 import paymentRoutes from "./routes/payment.route.js";
 import analyticsRoutes from "./routes/analytics.route.js";
 import path from "path";
+import process from "node:process";
 dotenv.config();
 
 const app = express();
@@ -27,12 +28,12 @@ app.use("/api/coupon", couponRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
-if (process.env.NODE_ENV !== "development") {
-  app.use(express.static(path.join(__dirname, "/frontend/dist")));
+if (process.env.NODE_ENV !== "production") {
+  app.use(express.static(path.join(__dirname, "/dist")));
 
   //express5 syntax
   app.get("/{*splat}", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    res.sendFile(path.resolve(__dirname, "dist", "index.html"));
   });
 }
 
