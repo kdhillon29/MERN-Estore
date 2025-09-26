@@ -24,7 +24,7 @@ app.use(cookieParser());
 // Cors setup to allow requests in production from the client
 app.use(
   cors({
-    origin: "*",
+    origin: "http://localhost:5173",
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
       "Content-Type",
@@ -32,6 +32,7 @@ app.use(
       "Accept",
       "X-Requested-With",
     ],
+    credentials: true,
     preflightContinue: false,
     optionsSuccessStatus: 204,
   })
