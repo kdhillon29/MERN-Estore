@@ -12,7 +12,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://mern-estore-sh15.onrender.com",
+        target: "https://mern-estore-henna.vercel.app",
       },
     },
   },
