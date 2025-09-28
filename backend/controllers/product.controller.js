@@ -119,6 +119,7 @@ export const getRecommendedProducts = async (req, res) => {
       },
     ]);
 
+    console.log("recommended products", products);
     res.json(products);
   } catch (error) {
     console.log("Error in getRecommendedProducts controller", error.message);

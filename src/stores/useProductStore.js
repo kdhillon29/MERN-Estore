@@ -92,4 +92,14 @@ export const useProductStore = create((set) => ({
       console.log("Error fetching featured products:", error);
     }
   },
+  getRecommendedProducts: async () => {
+    set({ loading: true });
+    try {
+      const response = await axios.get(`${URL}/api/products/recommendations`);
+      set({ products: response.data, loading: false });
+    } catch (error) {
+      set({ error: "Failed to fetch products", loading: false });
+      console.log("Error fetching recommended products:", error);
+    }
+  },
 }));
