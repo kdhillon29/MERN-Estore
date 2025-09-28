@@ -24,12 +24,8 @@ app.use(cookieParser());
 // Cors setup to allow requests in production from the client
 app.use(
   cors({
-    origin: [
-      "https://mern-estore-henna.vercel.app",
-      "https://mern-estore-git-main-kdhillon29s-projects.vercel.app",
-      "https://mern-estore-keyinzygm-kdhillon29s-projects.vercel.app",
-      "http://localhost:5173",
-    ],
+    origin: "https://mern-estore-henna.vercel.app",
+
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: [
       "Content-Type",
