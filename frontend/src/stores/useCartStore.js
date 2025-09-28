@@ -14,7 +14,7 @@ export const useCartStore = create((set, get) => ({
 
   getMyCoupon: async () => {
     try {
-      const response = await axios.get(`${URL}/api/coupon`);
+      const response = await axios.get("/api/coupon");
       set({ coupon: response.data });
     } catch (error) {
       console.error("Error fetching coupon:", error);
@@ -22,7 +22,7 @@ export const useCartStore = create((set, get) => ({
   },
   applyCoupon: async (code) => {
     try {
-      const response = await axios.post(`${URL}/api/coupon/validate`, { code });
+      const response = await axios.post("/api/coupon/validate", { code });
       set({ coupon: response.data, isCouponApplied: true });
       get().calculateTotals();
       toast.success("Coupon applied successfully");
@@ -38,7 +38,7 @@ export const useCartStore = create((set, get) => ({
 
   getCartItems: async () => {
     try {
-      const res = await axios.get(`${URL}/api/cart`);
+      const res = await axios.get("/api/cart");
       set({ cart: res.data });
       get().calculateTotals();
     } catch (error) {
@@ -49,7 +49,7 @@ export const useCartStore = create((set, get) => ({
   clearCart: async () => {
     set({ cart: [], coupon: null, total: 0, subtotal: 0 });
     try {
-      await axios.delete(`${URL}/api/cart`);
+      await axios.delete("/api/cart");
     } catch (error) {
       console.log("cart error", error);
       toast.error(error.response.data.message || "An error occurred");
@@ -58,7 +58,7 @@ export const useCartStore = create((set, get) => ({
   addToCart: async (product) => {
     set({ loading: true });
     try {
-      await axios.post(`${URL}/api/cart`, { productId: product._id });
+      await axios.post("/api/cart", { productId: product._id });
       toast.success("Product added to cart");
 
       set((prevState) => {
