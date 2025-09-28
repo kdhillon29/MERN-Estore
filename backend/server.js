@@ -60,9 +60,9 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Ecommerce Store API" });
 });
 
-app.listen(PORT, () => {
-  connectDB();
-  console.log(`Server is running on port ${PORT}`);
-});
-
+// app.listen(PORT, () => {
+//   connectDB();
+//   console.log(`Server is running on port ${PORT}`);
+// });
+await connectDB();
 export default app;
