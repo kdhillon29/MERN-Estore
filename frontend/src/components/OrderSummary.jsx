@@ -23,7 +23,7 @@ const OrderSummary = () => {
   const handlePayment = async () => {
     setLoading(true);
     const stripe = await stripePromise;
-    const res = await axios.post("/payment/create-checkout-session", {
+    const res = await axios.post("api/payment/create-checkout-session", {
       products: cart,
       couponCode: isCouponApplied && coupon ? coupon.code : null,
     });
