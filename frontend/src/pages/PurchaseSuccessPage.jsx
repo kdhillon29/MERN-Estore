@@ -21,7 +21,7 @@ const PurchaseSuccessPage = () => {
   useEffect(() => {
     const handleCheckoutSuccess = async (sessionId) => {
       try {
-        await axios.post("/payment/checkout-success", {
+        await axios.post("api/payment/checkout-success", {
           sessionId,
         });
         clearCart();
