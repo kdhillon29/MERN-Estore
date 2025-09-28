@@ -32,7 +32,7 @@ const PeopleAlsoBought = () => {
     getRecommendedProducts();
     setRecommendations(products);
     setIsLoading(false);
-  }, [products]);
+  }, []);
   if (isLoading) return <LoadingSpinner />;
 
   return (
