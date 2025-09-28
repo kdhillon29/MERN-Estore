@@ -1,12 +1,11 @@
 {
+  "buildCommand": " npm install && npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
   "rewrites": [
     {
       "source": "/backend/(.*)",
-      "destination": "/backend/index.vercel.js"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/"
+      "destination": "/backend/server.js"
     }
   ]
 }
