@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import axios from "../lib/axios";
-import toast from "react-hot-toast";
+// import axios from "../lib/axios";
+// import toast from "react-hot-toast";
 import LoadingSpinner from "./LoadingSpinner";
+import { useProductStore } from "../stores/useProductStore";
 
 const PeopleAlsoBought = () => {
   const [recommendations, setRecommendations] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-   const { getRecommendedProducts } = useProductStore();
+  const { products, getRecommendedProducts } = useProductStore();
   // useEffect(() => {
   //   const fetchRecommendations = async () => {
   //     try {
@@ -27,6 +28,11 @@ const PeopleAlsoBought = () => {
   //   fetchRecommendations();
   // }, []);
 
+  useEffect(() => {
+    getRecommendedProducts();
+    setRecommendations(products);
+    setIsLoading(false);
+  }, [products]);
   if (isLoading) return <LoadingSpinner />;
 
   return (
