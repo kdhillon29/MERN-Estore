@@ -47,14 +47,14 @@ app.use("/api/coupon", couponRoutes);
 app.use("/api/payment", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
 
-if (process.env.NODE_ENV !== "production") {
-  app.use(express.static(path.join(__dirname, "/dist")));
+// if (process.env.NODE_ENV !== "production") {
+//   app.use(express.static(path.join(__dirname, "/dist")));
 
-  //express5 syntax
-  app.get("/{*splat}", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "dist", "index.html"));
-  });
-}
+//   //express5 syntax
+//   app.get("/{*splat}", (req, res) => {
+//     res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+//   });
+// }
 
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the Ecommerce Store API" });
