@@ -34,13 +34,13 @@ const setCookies = (res, accessToken, refreshToken) => {
   res.cookie("accessToken", accessToken, {
     httpOnly: true, //prevent xsrf cross site scripting  attacks
     secure: process.env.NODE_ENV === "production", //only send cookies over https
-    sameSite: "strict", //prevent csrf attacks
+    sameSite: "Lax", //prevent csrf attacks
     maxAge: 15 * 60 * 1000, // expired 15 minutes
   });
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production", //only send cookies over https
-    sameSite: "strict", //prevent csrf attacks
+    sameSite: "Lax", //prevent csrf attacks
     maxAge: 7 * 24 * 60 * 60 * 1000, // expired 7 days
   });
 };
